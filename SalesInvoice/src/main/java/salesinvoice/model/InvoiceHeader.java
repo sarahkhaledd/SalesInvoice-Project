@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class InvoiceHeader  {
     private int invoiceNum ;
-    private Date invoiceDate ;
+    private String invoiceDate ;
     private String customerName;
     private double total; 
     ArrayList<InvoiceLine> item ; // Create an ArrayList object
@@ -29,11 +29,11 @@ public class InvoiceHeader  {
         this.invoiceNum = number;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return invoiceDate;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.invoiceDate = date;
     }
 
