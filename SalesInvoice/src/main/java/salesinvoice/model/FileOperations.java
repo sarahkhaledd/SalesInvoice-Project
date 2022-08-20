@@ -5,6 +5,7 @@
 package salesinvoice.model;
 
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -14,6 +15,8 @@ public class FileOperations {
     //Load Files
     public ArrayList<InvoiceHeader> readFile()
     {
+        JFileChooser jF = new JFileChooser();
+        int dialog = jF.showOpenDialog(this);
         return null;
     }
     //Save Data
