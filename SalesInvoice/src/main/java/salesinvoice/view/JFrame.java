@@ -7,10 +7,13 @@ package salesinvoice.view;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import salesinvoice.model.FileOperations;
+import salesinvoice.model.InvoiceHeader;
 
 /**
  *
@@ -216,6 +219,8 @@ public class JFrame extends javax.swing.JFrame {
        JFileChooser jF = new JFileChooser();
         int result = jF.showOpenDialog(jF);
         FileInputStream fis = null;
+        ArrayList<InvoiceHeader> invoiceHeaderArray = new ArrayList<>();
+        InvoiceHeader ih = new InvoiceHeader();
         if(result == JFileChooser.APPROVE_OPTION)
         {
             String pathFile = jF.getSelectedFile().getPath();
@@ -224,8 +229,24 @@ public class JFrame extends javax.swing.JFrame {
                 int size = fis.available();
                 byte[]array = new byte[size];
                 fis.read(array);
-                System.out.println("salesinvoice.view.JFrame.loadItemActionPerformed()");
-                System.out.println(array.toString());
+                String[] items = new String(array).split(",");
+                String num = items[0];
+                String date = items[1];
+                String name = items[2];
+                String total = items[3];
+                int number = Integer.parseInt(num.trim());
+                double totalPrice =Double.parseDouble(total.trim());
+                ih.setNumber(number);
+                ih.setCustomer(name);
+                ih.setDate(date);
+                ih.setTotal(totalPrice);
+                System.out.println("ok"+ih.getNumber()+ih.getTotal());
+
+                invoiceHeaderArray.add(ih);
+                /*System.out.println("salesinvoice.view.JFrame.loadItemActionPerformed()");
+                System.out.println(invoiceHeaderArray.get(0));*/
+                        
+                
            }catch(FileNotFoundException e){
             }catch(IOException e){
             }
