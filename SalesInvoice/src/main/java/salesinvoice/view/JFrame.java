@@ -224,6 +224,7 @@ public class JFrame extends javax.swing.JFrame {
                 int size = fis.available();
                 byte[]array = new byte[size];
                 fis.read(array);
+                System.out.println("salesinvoice.view.JFrame.loadItemActionPerformed()");
                 System.out.println(array.toString());
            }catch(FileNotFoundException e){
             }catch(IOException e){
