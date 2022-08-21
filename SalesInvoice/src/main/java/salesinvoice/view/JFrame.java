@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
 import salesinvoice.controller.Controller;
 import salesinvoice.model.FileOperations;
 import salesinvoice.model.InvoiceHeader;
@@ -294,5 +295,15 @@ public class JFrame extends javax.swing.JFrame {
     public void setInvoiceHeaderArray(ArrayList<InvoiceHeader> invoiceHeaderArray) {
         this.invoiceHeaderArray = invoiceHeaderArray;
     }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    
 
 }
