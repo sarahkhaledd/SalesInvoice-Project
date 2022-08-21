@@ -7,16 +7,22 @@ package salesinvoice.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import salesinvoice.model.FileOperations;
+import salesinvoice.view.JFrame;
 
 /**
  *
  * @author DELL
  */
 public class Controller implements ActionListener
-{
+{ 
+    JFrame jf;
+    public Controller(JFrame frame){
+        this.jf=frame;
+    }
+    FileOperations file = new FileOperations(this.jf) ; 
     public void actionPerformed(ActionEvent e)
     {
-        FileOperations file = null ; 
+        
         switch(e.getActionCommand())
         {
             case "Load File":
