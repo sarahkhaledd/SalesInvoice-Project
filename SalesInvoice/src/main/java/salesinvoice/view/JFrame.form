@@ -9,18 +9,18 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="loadItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Load File"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="saveItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save Data"/>
               </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="loadItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Load File"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="loadItem.addActionListener(c);  loadItem.setActionCommand(&quot;Load File&quot;);  "/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -10,16 +10,21 @@ import java.util.Date;
  *
  * @author DELL
  */
-public class InvoiceLine extends InvoiceHeader  {
+public class InvoiceLine {
     private int number ;
     private String itemName;
     private double itemPrice;
     private int count;
     private double itemTotal ; 
 
+    public InvoiceLine(int num , String name , double price ,int count) {
+        this.number=num;
+        this.itemName=name;
+        this.itemPrice=price;
+        this.count=count;
+    }
     public InvoiceLine() {
-        
-        super();
+        //super();
     }
 
     public int getNumber() {
@@ -55,7 +60,7 @@ public class InvoiceLine extends InvoiceHeader  {
     }
 
     public double getItemTotal() {
-        return itemTotal * itemPrice ;
+        return count * itemPrice ;
     }
 
     public void setItemTotal(double itemTotal) {

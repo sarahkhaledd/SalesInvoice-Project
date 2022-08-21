@@ -15,10 +15,23 @@ public class InvoiceHeader  {
     private String invoiceDate ;
     private String customerName;
     private double total; 
-    ArrayList<InvoiceLine> item ; // Create an ArrayList object
+    ArrayList<InvoiceLine> item = new ArrayList<InvoiceLine>() ; // Create an ArrayList object
+
+    public ArrayList<InvoiceLine> getItem() {
+        return item;
+    }
+
+    public void setItem(ArrayList<InvoiceLine> item) {
+        this.item = item;
+    }
 
     public InvoiceHeader() {
-     item= new ArrayList<InvoiceLine>();
+    // item= new ArrayList<InvoiceLine>();
+    }
+    public InvoiceHeader(int num,String date,String name) {
+        this.invoiceNum=num;
+        this.invoiceDate=date;
+        this.customerName=name;
     }
             
     public int getNumber() {
