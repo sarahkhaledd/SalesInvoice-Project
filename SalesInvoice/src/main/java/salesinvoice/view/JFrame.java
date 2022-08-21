@@ -12,8 +12,10 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import salesinvoice.controller.Controller;
 import salesinvoice.model.FileOperations;
 import salesinvoice.model.InvoiceHeader;
+import salesinvoice.model.InvoiceTable;
 
 /**
  *
@@ -24,8 +26,14 @@ public class JFrame extends javax.swing.JFrame {
     /**
      * Creates new form view
      */
+    private Controller c =new Controller(this);
+    private InvoiceTable table ; 
+    private ArrayList<InvoiceHeader> invoiceHeaderArray;
+
+            
     public JFrame () {
         initComponents();
+        invoiceHeaderArray = new ArrayList<>();
     }
 
     /**
@@ -57,8 +65,9 @@ public class JFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        loadItem = new javax.swing.JMenuItem();
         saveItem = new javax.swing.JMenuItem();
+        loadItem = new javax.swing.JMenuItem();
+        loadItem.addActionListener(c);  loadItem.setActionCommand("Load File");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,16 +128,11 @@ public class JFrame extends javax.swing.JFrame {
 
         jMenu3.setText("File");
 
-        loadItem.setText("Load File");
-        loadItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadItemActionPerformed(evt);
-            }
-        });
-        jMenu3.add(loadItem);
-
         saveItem.setText("Save Data");
         jMenu3.add(saveItem);
+
+        loadItem.setText("Load File");
+        jMenu3.add(loadItem);
 
         jMenuBar2.add(jMenu3);
 
@@ -215,52 +219,6 @@ public class JFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadItemActionPerformed
-       JFileChooser jF = new JFileChooser();
-        int result = jF.showOpenDialog(jF);
-        FileInputStream fis = null;
-        ArrayList<InvoiceHeader> invoiceHeaderArray = new ArrayList<>();
-        InvoiceHeader ih = new InvoiceHeader();
-        if(result == JFileChooser.APPROVE_OPTION)
-        {
-            String pathFile = jF.getSelectedFile().getPath();
-            try{
-                fis = new FileInputStream(pathFile);
-                int size = fis.available();
-                byte[]array = new byte[size];
-                fis.read(array);
-                String[] items = new String(array).split(",");
-                String num = items[0];
-                String date = items[1];
-                String name = items[2];
-                String total = items[3];
-                int number = Integer.parseInt(num.trim());
-                double totalPrice =Double.parseDouble(total.trim());
-                ih.setNumber(number);
-                ih.setCustomer(name);
-                ih.setDate(date);
-                ih.setTotal(totalPrice);
-                System.out.println("ok"+ih.getNumber()+ih.getTotal());
-
-                invoiceHeaderArray.add(ih);
-                /*System.out.println("salesinvoice.view.JFrame.loadItemActionPerformed()");
-                System.out.println(invoiceHeaderArray.get(0));*/
-                        
-                
-           }catch(FileNotFoundException e){
-            }catch(IOException e){
-            }
-            finally{
-                try {
-                    fis.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loadItemActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -320,4 +278,21 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JMenuItem saveItem;
     // End of variables declaration//GEN-END:variables
+
+    public Controller getC() {
+        return c;
+    }
+
+    public void setC(Controller c) {
+        this.c = c;
+    }
+
+    public ArrayList<InvoiceHeader> getInvoiceHeaderArray() {
+        return invoiceHeaderArray;
+    }
+
+    public void setInvoiceHeaderArray(ArrayList<InvoiceHeader> invoiceHeaderArray) {
+        this.invoiceHeaderArray = invoiceHeaderArray;
+    }
+
 }
