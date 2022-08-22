@@ -12,23 +12,20 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import salesinvoice.controller.Controller;
 import salesinvoice.model.FileOperations;
 import salesinvoice.model.InvoiceHeader;
-import salesinvoice.model.InvoiceTable;
+import salesinvoice.model.InvoiceHeaderTable;
 
 /**
  *
  * @author DELL
  */
 public class JFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form view
-     */
     private Controller c =new Controller(this);
-    private InvoiceTable table ; 
+    private InvoiceHeaderTable table ; 
     private ArrayList<InvoiceHeader> invoiceHeaderArray;
 
             
@@ -48,6 +45,8 @@ public class JFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTable1.getSelectionModel().addListSelectionListener(c);
+
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         invoiceNumberLabel = new javax.swing.JLabel();
@@ -74,13 +73,10 @@ public class JFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "No.", "Date", "Customer", "Total"
+
             }
         ));
         jTable1.setToolTipText("");
@@ -88,13 +84,10 @@ public class JFrame extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "No.", "Item Name", "Item Price", "Count", "Item Total"
+
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -116,6 +109,11 @@ public class JFrame extends javax.swing.JFrame {
         jLabel8.setText("jLabel8");
 
         createNewInvoiceBtn.setText("Create new invoice");
+        createNewInvoiceBtn.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                createNewInvoiceBtnComponentAdded(evt);
+            }
+        });
 
         deleteInvoiceBtn.setText("Delete invoice");
 
@@ -160,7 +158,7 @@ public class JFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -219,6 +217,10 @@ public class JFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createNewInvoiceBtnComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_createNewInvoiceBtnComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewInvoiceBtnComponentAdded
 
     /**
      * @param args the command line arguments
@@ -288,6 +290,22 @@ public class JFrame extends javax.swing.JFrame {
         this.c = c;
     }
 
+    public JTable getjTable2() {
+        return jTable2;
+    }
+
+    public void setjTable2(JTable jTable2) {
+        this.jTable2 = jTable2;
+    }
+
+    public InvoiceHeaderTable getTable() {
+        return table;
+    }
+
+    public void setTable(InvoiceHeaderTable table) {
+        this.table = table;
+    }
+
     public ArrayList<InvoiceHeader> getInvoiceHeaderArray() {
         return invoiceHeaderArray;
     }
@@ -302,6 +320,38 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setjTable1(JTable jTable1) {
         this.jTable1 = jTable1;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public void setjLabel6(JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    public JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    public void setjLabel7(JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    public JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    public void setjLabel8(JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
     }
 
     
