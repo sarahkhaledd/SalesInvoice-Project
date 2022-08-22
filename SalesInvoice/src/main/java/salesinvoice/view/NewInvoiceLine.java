@@ -46,13 +46,14 @@ public class NewInvoiceLine extends JDialog {
 
     public NewInvoiceLine(JFrame frame) {
         super(frame);
-        itamNameLabel = new JLabel("Item Name:");
-        itemCountLabel = new JLabel("Item Count:");
-        itemPricelLabel = new JLabel("Item Count:");
-        
         itamNameTxt = new JTextField(20);
+        itamNameLabel = new JLabel("Item Name:");
+
         itemCountTxt = new JTextField(20);
+        itemCountLabel = new JLabel("Item Count:");
+
         itemPricelTxt= new JTextField(20);
+        itemPricelLabel = new JLabel("Item Price:");
         
         okBtn = new JButton("OK");
         cancelBtn = new JButton("Cancel");
@@ -61,7 +62,7 @@ public class NewInvoiceLine extends JDialog {
         cancelBtn.setActionCommand("cancelBtnLine");
         okBtn.addActionListener(frame.getC());
         cancelBtn.addActionListener(frame.getC());
-        setLayout (new GridLayout(3, 2));
+        setLayout (new GridLayout(4, 2));
       //  setLayout(new GridLayout(3,2));
         add(itamNameLabel);
         add(itamNameTxt);
@@ -72,7 +73,7 @@ public class NewInvoiceLine extends JDialog {
         add(okBtn);
         add(cancelBtn);
         setModal(true);
-
+        pack();
 
 
     }
