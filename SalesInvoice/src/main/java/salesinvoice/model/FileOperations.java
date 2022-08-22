@@ -90,7 +90,6 @@ public class FileOperations {
                    invoiceLineArray.add(il);  
                    line = reader.readLine();
 		}
-                 frame.getjTable1().setModel(new InvoiceTable(invoiceHeaderArray));
 
            }catch(FileNotFoundException e){
             }catch(IOException e){
