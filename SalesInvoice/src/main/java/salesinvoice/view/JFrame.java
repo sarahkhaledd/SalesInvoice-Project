@@ -27,6 +27,7 @@ public class JFrame extends javax.swing.JFrame {
     private Controller c =new Controller(this);
     private InvoiceHeaderTable table ; 
     private ArrayList<InvoiceHeader> invoiceHeaderArray;
+    private InvoiceHeader header;
 
             
     public JFrame () {
@@ -57,12 +58,16 @@ public class JFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        createNewInvoiceBtn = new javax.swing.JButton();
         deleteInvoiceBtn = new javax.swing.JButton();
+        deleteInvoiceBtn.addActionListener(c);
         saveBtn = new javax.swing.JButton();
+        saveBtn.addActionListener(c);
         cancelBtn = new javax.swing.JButton();
+        cancelBtn.addActionListener(c);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        CreateInvoice = new javax.swing.JButton();
+        CreateInvoice.addActionListener(c);
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         saveItem = new javax.swing.JMenuItem();
@@ -108,13 +113,6 @@ public class JFrame extends javax.swing.JFrame {
 
         jLabel8.setText("jLabel8");
 
-        createNewInvoiceBtn.setText("Create new invoice");
-        createNewInvoiceBtn.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                createNewInvoiceBtnComponentAdded(evt);
-            }
-        });
-
         deleteInvoiceBtn.setText("Delete invoice");
 
         saveBtn.setText("Save");
@@ -124,6 +122,8 @@ public class JFrame extends javax.swing.JFrame {
         jLabel1.setText("Invoice Items");
 
         jLabel2.setText("Invoice Table");
+
+        CreateInvoice.setText("Create New Invoice");
 
         jMenu3.setText("File");
 
@@ -142,9 +142,9 @@ public class JFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(createNewInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(120, 120, 120)
+                .addComponent(CreateInvoice)
+                .addGap(64, 64, 64)
                 .addComponent(deleteInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBtn)
@@ -208,19 +208,15 @@ public class JFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createNewInvoiceBtn)
                     .addComponent(deleteInvoiceBtn)
                     .addComponent(saveBtn)
-                    .addComponent(cancelBtn))
+                    .addComponent(cancelBtn)
+                    .addComponent(CreateInvoice))
                 .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void createNewInvoiceBtnComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_createNewInvoiceBtnComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_createNewInvoiceBtnComponentAdded
 
     /**
      * @param args the command line arguments
@@ -258,8 +254,8 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateInvoice;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JButton createNewInvoiceBtn;
     private javax.swing.JLabel customerNameLabel;
     private javax.swing.JButton deleteInvoiceBtn;
     private javax.swing.JLabel invoiceDateLabel;
@@ -282,6 +278,14 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveItem;
     // End of variables declaration//GEN-END:variables
 
+    public InvoiceHeader getNumberOfInvoice(int number)
+    {
+        for (int i = 0; i < invoiceHeaderArray.size(); i++) {
+            if(number == invoiceHeaderArray.get(i).getNumber())
+                return header;
+        }
+        return null;
+    }
     public Controller getC() {
         return c;
     }
@@ -307,6 +311,8 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     public ArrayList<InvoiceHeader> getInvoiceHeaderArray() {
+        if(invoiceHeaderArray == null)
+            invoiceHeaderArray =new ArrayList<>();
         return invoiceHeaderArray;
     }
 
