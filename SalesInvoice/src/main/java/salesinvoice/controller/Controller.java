@@ -14,6 +14,8 @@ import salesinvoice.model.InvoiceHeader;
 import salesinvoice.model.InvoiceHeaderTable;
 import salesinvoice.model.InvoiceLineTable;
 import salesinvoice.view.JFrame;
+import salesinvoice.view.NewInvoiceHeader;
+import salesinvoice.view.NewInvoiceLine;
 
 public class Controller implements ActionListener , ListSelectionListener
 { 
@@ -24,6 +26,8 @@ public class Controller implements ActionListener , ListSelectionListener
     private FileOperations file = new FileOperations(jf) ; 
     private ArrayList<InvoiceHeader> invoiceHeaderArray;
     private InvoiceHeader header ;
+    private NewInvoiceLine newInvoiceFrame;
+    private NewInvoiceHeader newHeaderFrame;
 
     public void actionPerformed(ActionEvent e)
     {
@@ -33,7 +37,8 @@ public class Controller implements ActionListener , ListSelectionListener
             case "Load File":
                invoiceHeaderArray = file.readFile();
                jf.setInvoiceHeaderArray(invoiceHeaderArray);
-               jf.getjTable1().setModel(new InvoiceHeaderTable(invoiceHeaderArray));
+               jf.setTable(new InvoiceHeaderTable(jf.getInvoiceHeaderArray()));
+               jf.getjTable1().setModel(jf.getTable());
 
                 break;
             case "Save Data":
@@ -42,11 +47,24 @@ public class Controller implements ActionListener , ListSelectionListener
             case "Create New Invoice":
                 createNewInvoice();
                 break;
+                case "okBtn":
+                okBtn();
+                break;
+                case "cancelBtn":
+                cancelBtn();
+                break;
+                
             case "Delete invoice":
                 deleteInvoice();
                 break;
             case "Save":
                 save();
+                break;
+                case "okBtnLine":
+                okBtnLine();
+                break;
+                case "cancelBtnLine":
+                cancelBtn();
                 break;
             case "Cancel":
                 cancel();
@@ -59,6 +77,9 @@ public class Controller implements ActionListener , ListSelectionListener
     public void createNewInvoice()
     {
         
+        newHeaderFrame = new NewInvoiceHeader(jf);
+        newHeaderFrame.setVisible(true);
+        
     }
     public void deleteInvoice()
     {
@@ -66,7 +87,8 @@ public class Controller implements ActionListener , ListSelectionListener
     }
     public void save()
     {
-        
+        newInvoiceFrame = new NewInvoiceLine(jf);
+        newInvoiceFrame.setVisible(true);
     }
     public void cancel()
     {
@@ -85,5 +107,30 @@ public class Controller implements ActionListener , ListSelectionListener
             jf.getjLabel8().setText(""+header.getTotal());  
             jf.getjTable2().setModel(new InvoiceLineTable(header.getItem()));
         }
+    }
+
+    private void okBtn(){
+        int num = 0 ; 
+        String date =newHeaderFrame.getDateTxt().getText();
+        String name = newHeaderFrame.getCustomerNameTxt().getText();
+        newHeaderFrame.setVisible(false);
+        newHeaderFrame.dispose();
+        newHeaderFrame=null;
+        InvoiceHeader h = null ; 
+        for (int i = 0; i < h.getItem().size(); i++) {
+            if(num<h.getNumber())
+                num = h.getNumber();
+        }
+        InvoiceHeader header = new InvoiceHeader(++num,date,name);
+        jf.getInvoiceHeaderArray().add(header);
+        jf.getTable().fireTableDataChanged();
+        
+        
+    }
+
+    private void cancelBtn() {
+    }
+
+    private void okBtnLine() {
     }
 }
