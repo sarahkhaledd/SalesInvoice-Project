@@ -55,6 +55,7 @@ public class FileOperations {
                    ih= new InvoiceHeader(number,date,name);  
                    invoiceHeaderArray.add(ih);  
                    line = reader.readLine();
+                   //frame.getInvoiceHeaderArray().add(ih);
 		}
            }catch(FileNotFoundException e){
             }catch(IOException e){
@@ -86,7 +87,8 @@ public class FileOperations {
                    int number = Integer.parseInt(num);
                    double price = Double.parseDouble(itemPrice);
                    int c = Integer.parseInt(count);
-                   il= new InvoiceLine(number,itemName,price,c);  
+                   InvoiceHeader header= frame.getNumberOfInvoice(number);
+                   il= new InvoiceLine(header.getNumber(),itemName,price,c);  
                    invoiceLineArray.add(il);  
                    line = reader.readLine();
 		}
