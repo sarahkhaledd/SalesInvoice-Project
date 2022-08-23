@@ -7,15 +7,28 @@ import javax.swing.table.AbstractTableModel;
 public class InvoiceLineTable extends AbstractTableModel {
     ArrayList<InvoiceLine> invoicelineArray;
     private InvoiceLine il;
-    private String[] columnName = {"No.","Item Name","Item Price","Count","Item Total"};
+     int z ;
+
+    private String[] columnName ={};
 
     public InvoiceLineTable(ArrayList<InvoiceLine> invoicelineArray) {
         this.invoicelineArray = invoicelineArray;
     }
-
+   public void setRowCount(int x ) {
+        if(x==0)
+        {
+            z=x;
+            columnName=new String[]{};
+        }
+        else
+        {
+            z=invoicelineArray.size();
+            columnName = new String[]{"No.","Item Name","Item Price","Count","Item Total"};
+        }
+    }
     @Override
     public int getRowCount() {
-        return invoicelineArray.size();
+        return z;
     }
 
     @Override
@@ -45,4 +58,5 @@ public class InvoiceLineTable extends AbstractTableModel {
     public void setColumnName(String[] columnName) {
         this.columnName = columnName;
     }
+ 
 }
