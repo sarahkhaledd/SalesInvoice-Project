@@ -9,26 +9,15 @@ public class InvoiceLineTable extends AbstractTableModel {
     private InvoiceLine il;
      int z ;
 
-    private String[] columnName ={};
+    private String[] columnName ={"No.","Item Name","Item Price","Count","Item Total"};
 
     public InvoiceLineTable(ArrayList<InvoiceLine> invoicelineArray) {
         this.invoicelineArray = invoicelineArray;
     }
-   public void setRowCount(int x ) {
-        if(x==0)
-        {
-            z=x;
-            columnName=new String[]{};
-        }
-        else
-        {
-            z=invoicelineArray.size();
-            columnName = new String[]{"No.","Item Name","Item Price","Count","Item Total"};
-        }
-    }
+   
     @Override
     public int getRowCount() {
-        return z;
+        return invoicelineArray.size();
     }
 
     @Override
