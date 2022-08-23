@@ -30,11 +30,14 @@ public class JFrame extends javax.swing.JFrame {
     private InvoiceLineTable lineTable ;
     private ArrayList<InvoiceHeader> invoiceHeaderArray;
     private InvoiceHeader header;
+    private ArrayList<InvoiceHeader> oldInvoiceHeader;
+
 
             
     public JFrame () {
         initComponents();
         invoiceHeaderArray = new ArrayList<>();
+        oldInvoiceHeader =new ArrayList<>();
     }
 
     /**
@@ -377,6 +380,15 @@ public class JFrame extends javax.swing.JFrame {
     public void setLineTable(InvoiceLineTable lineTable) {
       
         this.lineTable = lineTable;
+    }
+
+    public ArrayList<InvoiceHeader> getOldInvoiceHeader() {
+        return oldInvoiceHeader;
+    }
+
+    public void setOldInvoiceHeader(ArrayList<InvoiceHeader> oldInvoiceHeader) {
+        this.oldInvoiceHeader=new ArrayList<>();
+        this.oldInvoiceHeader = oldInvoiceHeader;
     }
 
     
