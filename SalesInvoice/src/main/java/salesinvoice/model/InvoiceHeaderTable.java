@@ -24,7 +24,11 @@ public class InvoiceHeaderTable extends AbstractTableModel {
     public int getColumnCount() {
         return columnName.length;
     }
+    @Override
+    public void setValueAt(Object value, int row, int col) {
 
+        fireTableCellUpdated(row, col);
+    }
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         ih=invoiceHeaderArray.get(rowIndex);
