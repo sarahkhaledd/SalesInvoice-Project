@@ -157,9 +157,7 @@ public class FileOperations {
                 for (int j = 0; j < item.get(i).getItem().size(); j++) {
                     dataOfLine+=item.get(i).getItem().get(j).getNumber()+","+item.get(i).getItem().get(j).getItemName()
                       +","+item.get(i).getItem().get(j).getItemPrice()
-                      +","+item.get(i).getItem().get(j).getCount()+'\n';
-            }
-
+                      +","+item.get(i).getItem().get(j).getCount()+'\n';}
             }
             else
             {
