@@ -59,6 +59,8 @@ public class NewInvoiceHeader extends JDialog {
       add(okBtn);
       add(cancelBtn);
       setModal(true);
+              pack();
+
 
 
 
