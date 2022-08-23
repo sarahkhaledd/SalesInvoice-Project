@@ -25,15 +25,13 @@ import salesinvoice.view.JFrame;
  * @author DELL
  */
 public class FileOperations {
-//loadItem.addActionListener(c);
- //loadItem.setActionCommand("Load File");
  
     JFrame frame;
-    
+    String pathFileHeader , pathFileLine ;
     public FileOperations(JFrame frame) {
         this.frame=frame;
     }
-    //Load Files
+   
     public ArrayList<InvoiceHeader> readFile()
     {
         ArrayList<InvoiceLine> itemsInvoiceLine = new ArrayList<>();
@@ -44,9 +42,9 @@ public class FileOperations {
         InvoiceHeader ih =null ;
         if(result == JFileChooser.APPROVE_OPTION)
         {
-            String pathFile = jF.getSelectedFile().getPath();
+             pathFileHeader = jF.getSelectedFile().getPath();
             try{
-                reader = new BufferedReader(new FileReader(pathFile));
+                reader = new BufferedReader(new FileReader(pathFileHeader));
                 String line = reader.readLine();
                 while (line != null) {
                     String[] items  = line.split(",");
@@ -76,9 +74,9 @@ public class FileOperations {
         InvoiceLine il =null ;
         if(file == JFileChooser.APPROVE_OPTION)
         {
-            String pathFile = jF.getSelectedFile().getPath();
+             pathFileLine = jF.getSelectedFile().getPath();
             try{
-                reader = new BufferedReader(new FileReader(pathFile));
+                reader = new BufferedReader(new FileReader(pathFileLine));
                 String line = reader.readLine();
                 while (line != null) {
                     String[] items  = line.split(",");
@@ -185,6 +183,7 @@ public class FileOperations {
         bufferHeaderFile.close();
         bufferLineFile.close();
     }
+
     
 }
 class main{
