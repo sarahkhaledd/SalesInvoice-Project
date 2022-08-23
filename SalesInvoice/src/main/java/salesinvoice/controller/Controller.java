@@ -108,20 +108,16 @@ public class Controller implements ActionListener , ListSelectionListener
     public void deleteInvoice()
     {   
         int numberOfRow = jf.getjTable1().getSelectedRow();
-        
+        InvoiceHeader h = jf.getInvoiceHeaderArray().get(numberOfRow); 
+
         for (int i = 0; i < jf.getInvoiceHeaderArray().size() ;i++) {
-         InvoiceHeader h = jf.getInvoiceHeaderArray().get(numberOfRow); 
             if(h.getNumber() == jf.getInvoiceHeaderArray().get(i).getNumber() )
-            {
+            {                   
+                invoiceHeaderArrayDeleted.add(invoiceHeaderArray.get(i));
                 for (int j = 0; j < jf.getInvoiceHeaderArray().get(i).getItem().size(); j++) {
-                    //invoiceHeaderArrayDeleted.add(invoiceHeaderArray.get(i));
                     jf.getInvoiceHeaderArray().get(i).getItem().remove(j);
                 }
-                jf.getInvoiceHeaderArray().remove(i);
-               
-              jf.getLineTable().setRowCount(0);
-              jf.setLineTable(new InvoiceLineTable(h.getItem()));
-              jf.getLineTable().fireTableDataChanged();
+                jf.getInvoiceHeaderArray().remove(i);            
                 break;
             }    
         }
@@ -130,12 +126,7 @@ public class Controller implements ActionListener , ListSelectionListener
                 jf.getjLabel7().setText("");
                 jf.getjLabel8().setText(""); 
                 
-       // jf.getjTable1().setModel(new InvoiceHeaderTable(invoiceHeaderArray));
-        //jf.getjTable2().removeAll();
         jf.getTable().fireTableDataChanged();
-        //jf.getLineTable().fireTableDataChanged();
-
-       // jf.getjTable2().clearSelection();
     }
     public void cancel()
     {
@@ -143,6 +134,9 @@ public class Controller implements ActionListener , ListSelectionListener
         for (int i = counter; i > 0; i--) {
             jf.getOldInvoiceHeader().remove(jf.getOldInvoiceHeader().size()-1);
             counter--;
+        }
+        for (int i = 0; i < invoiceHeaderArrayDeleted.size(); i++) {
+            jf.getOldInvoiceHeader().add(invoiceHeaderArrayDeleted.get(i));
         }
             jf.getjLabel5().setText(""+header.getNumber());
             jf.getjLabel6().setText(""+header.getDate());
@@ -162,9 +156,7 @@ public class Controller implements ActionListener , ListSelectionListener
             jf.getjLabel6().setText(""+header.getDate());
             jf.getjLabel7().setText(""+header.getCustomer());
             jf.getjLabel8().setText(""+header.getTotal());  
-            InvoiceLineTable invoiceTable = new InvoiceLineTable(header.getItem());
-            invoiceTable.setRowCount(header.getItem().size());
-            jf.getjTable2().setModel(invoiceTable);
+            jf.getjTable2().setModel(new InvoiceLineTable(header.getItem()));
         }
     }
 
@@ -208,11 +200,9 @@ public class Controller implements ActionListener , ListSelectionListener
         newInvoiceFrame.setVisible(false);
         newInvoiceFrame.dispose();
         newInvoiceFrame=null;
-        for (int i = 0; i < header.getItem().size(); i++) {
-            if(num<header.getNumber())
-                num = header.getNumber();
-        }
-        InvoiceLine line = new InvoiceLine(++num,itemName,p,d);
+                num = jf.getInvoiceHeaderArray().get(numberOfRow).getNumber();
+        
+        InvoiceLine line = new InvoiceLine(num,itemName,p,d);
         header.getItem().add(line);
         jf.setLineTable(new InvoiceLineTable(header.getItem()));
         jf.getTable().fireTableDataChanged();
