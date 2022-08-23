@@ -18,6 +18,7 @@ import salesinvoice.controller.Controller;
 import salesinvoice.model.FileOperations;
 import salesinvoice.model.InvoiceHeader;
 import salesinvoice.model.InvoiceHeaderTable;
+import salesinvoice.model.InvoiceLineTable;
 
 /**
  *
@@ -26,6 +27,7 @@ import salesinvoice.model.InvoiceHeaderTable;
 public class JFrame extends javax.swing.JFrame {
     private Controller c =new Controller(this);
     private InvoiceHeaderTable table ; 
+    private InvoiceLineTable lineTable ;
     private ArrayList<InvoiceHeader> invoiceHeaderArray;
     private InvoiceHeader header;
 
@@ -68,6 +70,8 @@ public class JFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         CreateInvoice = new javax.swing.JButton();
         CreateInvoice.addActionListener(c);
+        CreateItem = new javax.swing.JButton();
+        CreateItem.addActionListener(c);
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         saveItem = new javax.swing.JMenuItem();
@@ -125,6 +129,8 @@ public class JFrame extends javax.swing.JFrame {
 
         CreateInvoice.setText("Create New Invoice");
 
+        CreateItem.setText("Create New Item");
+
         jMenu3.setText("File");
 
         saveItem.setText("Save Data");
@@ -147,6 +153,8 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addComponent(deleteInvoiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CreateItem)
+                .addGap(18, 18, 18)
                 .addComponent(saveBtn)
                 .addGap(18, 18, 18)
                 .addComponent(cancelBtn)
@@ -211,7 +219,8 @@ public class JFrame extends javax.swing.JFrame {
                     .addComponent(deleteInvoiceBtn)
                     .addComponent(saveBtn)
                     .addComponent(cancelBtn)
-                    .addComponent(CreateInvoice))
+                    .addComponent(CreateInvoice)
+                    .addComponent(CreateItem))
                 .addGap(33, 33, 33))
         );
 
@@ -255,6 +264,7 @@ public class JFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateInvoice;
+    private javax.swing.JButton CreateItem;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel customerNameLabel;
     private javax.swing.JButton deleteInvoiceBtn;
@@ -358,6 +368,15 @@ public class JFrame extends javax.swing.JFrame {
 
     public void setjLabel8(JLabel jLabel8) {
         this.jLabel8 = jLabel8;
+    }
+
+    public InvoiceLineTable getLineTable() {
+        return lineTable;
+    }
+
+    public void setLineTable(InvoiceLineTable lineTable) {
+      
+        this.lineTable = lineTable;
     }
 
     
