@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.ListSelectionEvent;
@@ -45,6 +46,9 @@ public class Controller implements ActionListener , ListSelectionListener
                jf.setInvoiceHeaderArray(invoiceHeaderArray);
                jf.setOldInvoiceHeader(invoiceHeaderArray);
                jf.setTable(new InvoiceHeaderTable(jf.getInvoiceHeaderArray()));
+                for (int i = 0; i < jf.getInvoiceHeaderArray().size(); i++) {
+                jf.setLineTable(new InvoiceLineTable(jf.getInvoiceHeaderArray().get(i).getItem()));
+                }
                jf.getjTable1().setModel(jf.getTable());
                
 
@@ -93,6 +97,10 @@ public class Controller implements ActionListener , ListSelectionListener
             case "Cancel":
                 cancel();
                 break;
+                //Delete Item
+                case "Delete Item":
+                deleteItem();
+                break;
             default:
                 break;
             
@@ -108,25 +116,24 @@ public class Controller implements ActionListener , ListSelectionListener
     public void deleteInvoice()
     {   
         int numberOfRow = jf.getjTable1().getSelectedRow();
-        InvoiceHeader h = jf.getInvoiceHeaderArray().get(numberOfRow); 
 
-        for (int i = 0; i < jf.getInvoiceHeaderArray().size() ;i++) {
-            if(h.getNumber() == jf.getInvoiceHeaderArray().get(i).getNumber() )
-            {                   
-                invoiceHeaderArrayDeleted.add(invoiceHeaderArray.get(i));
-                for (int j = 0; j < jf.getInvoiceHeaderArray().get(i).getItem().size(); j++) {
-                    jf.getInvoiceHeaderArray().get(i).getItem().remove(j);
-                }
-                jf.getInvoiceHeaderArray().remove(i);            
-                break;
-            }    
-        }
+             jf.getInvoiceHeaderArray().remove(numberOfRow);  
+                      
                 jf.getjLabel5().setText("");
                 jf.getjLabel6().setText("");
                 jf.getjLabel7().setText("");
                 jf.getjLabel8().setText(""); 
-                
+                jf.getLineTable().fireTableDataChanged();
+       
         jf.getTable().fireTableDataChanged();
+
+    }
+    public void deleteItem()
+    {
+           int numberOfRow = jf.getjTable1().getSelectedRow();
+           int numberOfRow2 = jf.getjTable2().getSelectedRow();
+           jf.getInvoiceHeaderArray().get(numberOfRow).getItem().remove(numberOfRow2);
+           jf.getLineTable().fireTableDataChanged();
     }
     public void cancel()
     {
