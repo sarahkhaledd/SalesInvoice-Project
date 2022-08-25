@@ -75,6 +75,8 @@ public class JFrame extends javax.swing.JFrame {
         CreateInvoice.addActionListener(c);
         CreateItem = new javax.swing.JButton();
         CreateItem.addActionListener(c);
+        deleteItem = new javax.swing.JButton();
+        deleteItem.addActionListener(c);
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         saveItem = new javax.swing.JMenuItem();
@@ -134,6 +136,8 @@ public class JFrame extends javax.swing.JFrame {
 
         CreateItem.setText("Create New Item");
 
+        deleteItem.setText("Delete Item");
+
         jMenu3.setText("File");
 
         saveItem.setText("Save Data");
@@ -186,13 +190,19 @@ public class JFrame extends javax.swing.JFrame {
                                             .addComponent(jLabel5)))
                                     .addComponent(jLabel1))
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteItem)
+                .addGap(177, 177, 177))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +234,9 @@ public class JFrame extends javax.swing.JFrame {
                     .addComponent(cancelBtn)
                     .addComponent(CreateInvoice)
                     .addComponent(CreateItem))
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteItem)
+                .addGap(4, 4, 4))
         );
 
         pack();
@@ -271,6 +283,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel customerNameLabel;
     private javax.swing.JButton deleteInvoiceBtn;
+    private javax.swing.JButton deleteItem;
     private javax.swing.JLabel invoiceDateLabel;
     private javax.swing.JLabel invoiceNumberLabel;
     private javax.swing.JLabel invoiceTotalLabel;
