@@ -80,6 +80,7 @@ public class JFrame extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         saveItem = new javax.swing.JMenuItem();
+        saveItem.addActionListener(c);
         loadItem = new javax.swing.JMenuItem();
         loadItem.addActionListener(c);  loadItem.setActionCommand("Load File");
 
