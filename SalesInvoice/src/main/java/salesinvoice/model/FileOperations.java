@@ -126,8 +126,7 @@ public class FileOperations {
         if (jF.showSaveDialog(jF) == JFileChooser.APPROVE_OPTION) {
             String pathFileHeader = jF.getSelectedFile().getPath();
            try {
-                fileHeader = new FileWriter(pathFileHeader, true);
-               // bufferHeaderFile = new BufferedWriter(fileHeader);
+                fileHeader = new FileWriter(pathFileHeader);
 
            } catch (FileNotFoundException ex) {
                Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,8 +137,7 @@ public class FileOperations {
             String pathFileLine = jF.getSelectedFile().getPath();
             
            try {
-                fileLine = new FileWriter(pathFileLine, true);
-               // bufferLineFile = new BufferedWriter(fileLine);
+                fileLine = new FileWriter(pathFileLine);
 
            } catch (FileNotFoundException ex) {
                Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
