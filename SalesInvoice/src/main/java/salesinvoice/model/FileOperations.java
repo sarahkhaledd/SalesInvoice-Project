@@ -121,16 +121,13 @@ public class FileOperations {
     //Save Data
     public void writeFile(ArrayList<InvoiceHeader> item) throws IOException
     {
-        FileWriter fileLine ;
-        BufferedWriter bufferLineFile = null ;
-        FileWriter fileHeader ;
-        BufferedWriter bufferHeaderFile =null;
+        FileWriter fileHeader = null ,fileLine = null;
        JFileChooser jF = new JFileChooser(); 
         if (jF.showSaveDialog(jF) == JFileChooser.APPROVE_OPTION) {
             String pathFileHeader = jF.getSelectedFile().getPath();
            try {
-               fileHeader = new FileWriter(pathFileHeader, true);
-               bufferHeaderFile = new BufferedWriter(fileHeader);
+                fileHeader = new FileWriter(pathFileHeader, true);
+               // bufferHeaderFile = new BufferedWriter(fileHeader);
 
            } catch (FileNotFoundException ex) {
                Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,8 +138,8 @@ public class FileOperations {
             String pathFileLine = jF.getSelectedFile().getPath();
             
            try {
-               fileLine = new FileWriter(pathFileLine, true);
-               bufferLineFile = new BufferedWriter(fileLine);
+                fileLine = new FileWriter(pathFileLine, true);
+               // bufferLineFile = new BufferedWriter(fileLine);
 
            } catch (FileNotFoundException ex) {
                Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,14 +169,15 @@ public class FileOperations {
                       +","+item.get(i).getItem().get(j).getItemPrice()
                       +","+item.get(i).getItem().get(j).getCount();
             }
-
+                                        
             }
 
         }
-        bufferHeaderFile.write(dataOfHeader);
-        bufferLineFile.write(dataOfLine);
-        bufferHeaderFile.close();
-        bufferLineFile.close();
+
+        fileHeader.write(dataOfHeader);
+        fileLine.write(dataOfLine);
+        fileHeader.close();
+        fileLine.close();
     }
 
     
