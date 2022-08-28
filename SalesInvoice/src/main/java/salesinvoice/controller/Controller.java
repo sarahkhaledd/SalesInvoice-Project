@@ -55,7 +55,7 @@ public class Controller implements ActionListener , ListSelectionListener
                 break;
             case "Save Data":
             {
-                try {
+               try {
                     file.writeFile(jf.getInvoiceHeaderArray());
                 } catch (IOException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,14 +116,21 @@ public class Controller implements ActionListener , ListSelectionListener
     public void deleteInvoice()
     {   
         int numberOfRow = jf.getjTable1().getSelectedRow();
+       
+               jf.getInvoiceHeaderArray().get(numberOfRow).getItem().clear();
+            
+          //  System.out.println("size"+jf.getInvoiceHeaderArray().get(numberOfRow).getItem().size());
 
+         
              jf.getInvoiceHeaderArray().remove(numberOfRow);  
-                      
+       
+                //invoiceHeaderArrayDeleted.add(invoiceHeaderArray.get(i));
+               
                 jf.getjLabel5().setText("");
                 jf.getjLabel6().setText("");
                 jf.getjLabel7().setText("");
                 jf.getjLabel8().setText(""); 
-                jf.getLineTable().fireTableDataChanged();
+             //   jf.getLineTable().fireTableDataChanged();
        
         jf.getTable().fireTableDataChanged();
 
